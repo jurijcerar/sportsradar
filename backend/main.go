@@ -12,6 +12,7 @@ import (
 func main() {
 	database := db.ConnectDB()
 	db.InitSchema(database)
+	db.InitializeSeedData(database)
 
 	r := gin.Default()
 

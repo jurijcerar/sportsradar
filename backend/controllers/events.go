@@ -1,4 +1,4 @@
-package handlers
+package controllers
 
 import (
 	"database/sql"
@@ -8,15 +8,15 @@ import (
 	"github.com/sportsradar/models"
 )
 
-type Handler struct {
+type Controller struct {
 	DB *sql.DB
 }
 
-func NewHandler(db *sql.DB) *Handler {
-	return &Handler{DB: db}
+func NewController(db *sql.DB) *Controller {
+	return &Controller{DB: db}
 }
 
-func (h *Handler) GetEvents(c *gin.Context) {
+func (h *Controller) GetEvents(c *gin.Context) {
 
 	query := `
         SELECT e.id, e.date, e.time, 
@@ -51,7 +51,7 @@ func (h *Handler) GetEvents(c *gin.Context) {
 	c.JSON(http.StatusOK, events)
 }
 
-func (h *Handler) GetEvent(c *gin.Context) {
+func (h *Controller) GetEvent(c *gin.Context) {
 	id := c.Param("id")
 
 	query := `
@@ -87,7 +87,7 @@ func (h *Handler) GetEvent(c *gin.Context) {
 	c.JSON(http.StatusOK, e)
 }
 
-func (h *Handler) CreateEvent(c *gin.Context) {
+func (h *Controller) CreateEvent(c *gin.Context) {
 	type Request struct {
 		Date        string `json:"date"`
 		Time        string `json:"time"`

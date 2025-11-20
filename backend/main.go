@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/sportsradar/controllers"
 	"github.com/sportsradar/db"
-	"github.com/sportsradar/handlers"
 )
 
 func main() {
@@ -26,7 +26,7 @@ func main() {
 		MaxAge:           12 * time.Hour,
 	}))
 
-	h := handlers.NewHandler(database)
+	h := controllers.NewController(database)
 
 	r.GET("/events", h.GetEvents)
 	r.GET("/events/:id", h.GetEvent)

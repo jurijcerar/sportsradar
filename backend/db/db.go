@@ -35,6 +35,10 @@ func InitSchema(db *sql.DB) { // initialize the database schema
 
 func InitializeSeedData(db *sql.DB) { // seed initial data into the database
 	seedSQL := `
+	CREATE UNIQUE INDEX IF NOT EXISTS idx_sports_name ON sports(name);
+    CREATE UNIQUE INDEX IF NOT EXISTS idx_venues_name_location ON venues(name, location);
+    CREATE UNIQUE INDEX IF NOT EXISTS idx_teams_name_sport ON teams(name, _sport_id);
+
     INSERT OR IGNORE INTO sports (name) VALUES 
         ('Football'),
         ('Basketball');

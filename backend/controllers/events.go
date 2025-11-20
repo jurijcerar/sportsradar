@@ -8,17 +8,18 @@ import (
 	"github.com/sportsradar/models"
 )
 
-type Controller struct {
+type Controller struct { //controller struct, could probably be in its own file tbh
 	DB *sql.DB
 }
 
-func NewController(db *sql.DB) *Controller {
+func NewController(db *sql.DB) *Controller { //constructor for controller
 	return &Controller{DB: db}
 }
 
-func (h *Controller) GetEvents(c *gin.Context) {
+func (h *Controller) GetEvents(c *gin.Context) { //GET /events handler
 
-	query := `
+	//sql query to get events with related data
+	query := ` 
         SELECT e.id, e.date, e.time, 
                s.name, v.name, t1.name, t2.name, 
                e.description
@@ -88,17 +89,8 @@ func (h *Controller) GetEvent(c *gin.Context) {
 }
 
 func (h *Controller) CreateEvent(c *gin.Context) {
-	type Request struct {
-		Date        string `json:"date"`
-		Time        string `json:"time"`
-		SportID     int    `json:"sport_id"`
-		VenueID     int    `json:"venue_id"`
-		Team1ID     int    `json:"team1_id"`
-		Team2ID     int    `json:"team2_id"`
-		Description string `json:"description"`
-	}
 
-	var req Request
+	var req models.Event
 	if err := c.BindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid data"})
 		return
@@ -111,8 +103,8 @@ func (h *Controller) CreateEvent(c *gin.Context) {
 
 	_, err := h.DB.Exec(query,
 		req.Date, req.Time,
-		req.SportID, req.VenueID,
-		req.Team1ID, req.Team2ID,
+		req.Sport, req.Venue,
+		req.Team1, req.Team2,
 		req.Description,
 	)
 

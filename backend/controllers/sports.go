@@ -11,7 +11,7 @@ func (h *Controller) GetSports(c *gin.Context) {
 
 	query := `
         SELECT s.id, s.name
-        FROM events s
+        FROM sports s
 		ORDER BY s.name;
     `
 

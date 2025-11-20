@@ -16,9 +16,8 @@ func main() {
 
 	r := gin.Default()
 
-	// CORS middleware configuration
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:5173", "http://127.0.0.1:5173"},
+		AllowOrigins:     []string{"http://localhost:5173", "http://127.0.0.1:5173"}, //need to use both localhost and 127.. otherwise some browsers block requests
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"},
 		ExposeHeaders:    []string{"Content-Length"},
@@ -31,6 +30,9 @@ func main() {
 	r.GET("/events", h.GetEvents)
 	r.GET("/events/:id", h.GetEvent)
 	r.POST("/events", h.CreateEvent)
+	r.GET("/teams", h.GetTeams)
+	r.GET("/sports", h.GetSports)
+	r.GET("/venues", h.GetVenues)
 
 	r.Run(":8080")
 }

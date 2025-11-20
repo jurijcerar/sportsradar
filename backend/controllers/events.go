@@ -103,8 +103,8 @@ func (h *Controller) CreateEvent(c *gin.Context) {
 
 	_, err := h.DB.Exec(query,
 		req.Date, req.Time,
-		req.Sport, req.Venue,
-		req.Team1, req.Team2,
+		req.SportID, req.VenueID,
+		req.Team1ID, req.Team2ID,
 		req.Description,
 	)
 

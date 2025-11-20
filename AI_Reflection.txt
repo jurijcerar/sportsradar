@@ -1,3 +1,23 @@
+USE OF AI
+
 1. I used AI to generate the ERD as I didn't want to draw it myself. I designed it myself, but I feed the info
 to an AI to generate the picture. 
+
+2. Most if not all css was done by copilot. 
+
+3. Copilot autocomplete was done on some of the backend controller functions,
+as they are very similar. 
+
+4. AI was also used in some debug steps on the frontend. Mainly with fetching data and storing it.
+
+TECHNICAL DECISIONS
+
+I decided to add a few sample teams,venues and sports. As therwise the application wouldnt work
+and this was less work than implementing api so the user can add them and also made it simpler for 
+the user as he doenst need to add a sport before he can add a team, etc.
+
+MORE TIME
+
+If I had more time I would implement all functions (GET,POST,PUT,DELETE) for all tables 
+in the database. I would also cleanup the frontend and make it look nicer.
 
